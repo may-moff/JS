@@ -21,7 +21,21 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
 
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    .h1 {
+      color: var(--base);
+    }
     /*
       misc styles, nothing to do with CSS variables
     */
@@ -45,6 +59,38 @@
   </style>
 
   <script>
+    // remember data-attribute that we can set ourselves, so data-suffix was set in order to be able to use px if necessary . so data-whatevs
+    const inputs = document.querySelectorAll('.controls input');
+
+    function handleUpdate() {
+      // to get px appended if necessary but because the color doesn't have a suffix, e.g. px, we need the empty string so that the consple doesn't log anyrting but also doesn't throw a nil
+      const suffix = this.dataset.sizing || '';
+      //we are going to select entire document which is pur root and we are gping to set a [roperty of base, spacing or blur as this.name + value + suffix in order to get e.g. blur + 30 + px
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+
+    }
+
+    inputs.forEach(input => input.addEventListener('change', handleUpdate,));
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </script>
 
 </body>
